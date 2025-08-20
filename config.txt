@@ -1,0 +1,160 @@
+//Typescript Full-Stack Command Line
+
+//Backend
+-------------------------------------------------------------------------------
+Node JS, Express and MongoDB:
+  //create backend folder (./backend)
+  npm init -y
+  npm install express mongoose cors dotenv
+  npm install nodemon --save-dev
+  npm install typescript ts-node ts-node-dev @types/node @types/express @types/mongoose @types/cors @types/dotenv @types/cookie-parser --save-dev
+
+    // nodemon: automatically restarting the node app when file changes
+    // cors: to prevent unauthorized access to resources on a web page from different origins.
+    // dotenv: keep passwords, API keys, and other sensitive data out of your code.
+
+  //create tsconfig.json
+  npx tsc --init
+
+  //set tsconfig.json
+  {
+    "compilerOptions": {
+      "target": "ESNext",
+      "module": "CommonJS",
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "strict": true,
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "esModuleInterop": true
+    },
+    "include": ["src"],
+    "exclude": ["node_modules"]
+  }
+
+  //create ".env" file on backend directory and set:
+	PORT=5000
+  DB_URI=mongodb+srv://user:pwd@cluster0.pzf1d2h.mongodb.net/dbName
+
+  //Create Project Structure
+  backend/
+  ├── src/
+  │   ├── index.ts
+  ├── tsconfig.json
+  ├── package.json
+  ├── .env
+
+  //Add Scripts to package.json
+  "scripts": {
+    "install-typescript": "npm install typescript ts-node ts-node-dev @types/node @types/express @types/mongoose @types/cors @types/dotenv --save-dev",
+    "install-dependencies": "npm install express mongoose cors dotenv",
+    "install-nodemon": "npm install nodemon --save-dev",
+    "install": "npm run install-typescript && npm run install-dependencies && npm run install-nodemon",
+    "dev": "ts-node-dev src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  }
+
+  //Run the Server
+  npm run dev
+
+//Frontend using Vite
+-------------------------------------------------------------------------------
+npm create vite@latest frontend
+//select TypeScript +
+cd frontend
+npm install react-router-dom axios
+npm install @types/react-router-dom @types/axios --save-dev
+
+//check tsconfig.json
+
+//update package.json
+"scripts": {
+    "dev": "vite",
+    "install-react": "npm install react-router-dom axios",
+    "install-typescript": "npm install @types/react-router-dom @types/axios --save-dev",
+    "install": "npm install install-react && npm install install-typescript",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  }
+
+//start frontend
+npm run dev
+
+//Root Directory
+-------------------------------------------------------------------------------
+npm install concurrently --save-dev
+
+Root Package.json
+{
+  "name": "exam",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "install-concurrently": "npm install concurrently --save-dev",
+    "install-client": "cd frontend && npm install",
+    "install-server": "cd backend && npm install",
+    "install": "npm run install-concurrently && npm run install-client && npm run install-server",
+    "build-client": "cd frontend && npm run build",
+    "build-server": "cd backend && npm run build",
+    "build": "npm run build-client && npm run build-server",
+    "start-client": "cd frontend && npm run dev",
+    "start-server": "cd backend && npm run dev",
+    "start": "concurrently \"npm run start-server\" \"npm run start-client\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
+
+//start app from Root
+npm start
+
+-----------------------------------------------------------------------------
+//First GitHub upload
+echo "# portfolio" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/EltonHOEvangelista/portfolio.git
+git push -u origin main
+
+//clone repository from GitHub
+git clone https://github.com/username/repository.git
+
+//update local code from GitHub
+
+
+//Switch between branches
+git checkout branch_name
+
+//merge
+git checkout source-branch (outdated)
+git pull origin source-branch (optional)
+git merge origin/merge-branch (origin/updated code)
+push to GitHub 
+
+//create branch on GitHub and push code
+git checkout -b <branch-name>
+git add .
+git commit -m "Your commit message"
+git push origin branch_name //update remote repository
+git status
+
+//push to GitHub
+git <branch-name>
+git add .
+git commit -m "Your commit message"
+git push origin branch_name //update remote repository
+git status
+
+Others GitHub commands:
+git branch -a //check listed branches
+git ls-remote origin
+
+git fetch origin  //This will sync your local repository with the remote branches.
+
+
+-----------------------------------------------------------------------------

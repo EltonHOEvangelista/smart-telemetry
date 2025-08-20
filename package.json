@@ -1,0 +1,21 @@
+{
+  "name": "smart-telemetry",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "install-concurrently": "npm install concurrently --save-dev",
+    "install-client": "cd frontend && npm install",
+    "install-server": "cd backend && npm install",
+    "install": "npm run install-concurrently && npm run install-client && npm run install-server",
+    "build-client": "cd frontend && npm run build",
+    "build-server": "cd backend && npm run build",
+    "build": "npm run build-client && npm run build-server",
+    "start-client": "cd frontend && npm run dev",
+    "start-server": "cd backend && npm run dev",
+    "start": "concurrently \"npm run start-server\" \"npm run start-client\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  }
+}
